@@ -1,8 +1,8 @@
 FROM golang:1.15
 LABEL stage=builder
-WORKDIR /swag
-RUN git clone --branch v1.6.7 https://github.com/swaggo/swag.git .
-RUN go build -o swag -ldflags "-s -w -linkmode external -extldflags -static" cmd/swag/main.go
+WORKDIR /golint
+RUN git clone https://github.com/golang/lint.git .
+RUN GOPROXY=https://goproxy.io go build -o golint -ldflags "-s -w -linkmode external -extldflags -static" golint/golint.go
 
 FROM alpine:latest
-COPY --from=0 /swag/swag /usr/bin/swag
+COPY --from=0 /golint/golint /usr/bin/golint
