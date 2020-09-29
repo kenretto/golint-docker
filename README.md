@@ -3,8 +3,7 @@ golint docker image, for use by drone
 
 # Usage
 ```
-docker pull kenretto/golint:latest
-docker run -v project_path:/golint kenretto/golint golint ./... 
+docker run --rm -v your_project_path:/project -w /project  kenretto/golint
 ```
 
 # Default command
