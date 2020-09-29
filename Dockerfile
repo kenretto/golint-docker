@@ -6,3 +6,4 @@ RUN cd golint/ && GOPROXY=https://goproxy.io go build -o lint
 
 FROM alpine:latest
 COPY --from=0 /golint/golint/lint /usr/bin/golint
+CMD ["golint", "./..."]
